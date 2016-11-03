@@ -1,5 +1,5 @@
 package com.kchen52.controller;
- 
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,20 +13,20 @@ import com.twilio.sdk.verbs.TwiMLResponse;
 
 @Controller
 public class SMSController {
- 
-	@RequestMapping(value="/sms", method=RequestMethod.GET)
-	public ModelAndView processSMS(HttpServletRequest request, HttpServletResponse response) {
 
-		// TODO: Validate input with regex
-		
-		// Assuming it's legit
-		SMSProcessor processor = SMSProcessor.getProcessor();
-		processor.someFunction(request);
+    @RequestMapping(value="/sms", method=RequestMethod.GET)
+        public ModelAndView processSMS(HttpServletRequest request, HttpServletResponse response) {
 
-		return new ModelAndView("test", "message", "this be the actual msg lol");
-	}
-	
-		
+            // TODO: Validate input with regex
+
+            // Assuming it's legit
+            SMSProcessor processor = SMSProcessor.getProcessor();
+            processor.someFunction(request);
+
+            return new ModelAndView("test", "message", "this be the actual msg lol1");
+        }
+
+
 
 
 

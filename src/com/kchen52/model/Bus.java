@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 class Bus {
     private int vehicleNumber;
     private int tripId;
-    private int routeNumber;
+    private String routeNumber;
     private String direction;
     private String destination;
     private String pattern;
@@ -18,7 +18,7 @@ class Bus {
     public Bus() {
         vehicleNumber = -1;
         tripId = -1;
-        routeNumber = -1;
+        routeNumber = "-1";
         direction = "weast";
         destination = "hell";
         pattern = "null";
@@ -34,10 +34,10 @@ class Bus {
         // <Destination>SomePlace</Destination><Pattern>EB1</Pattern><Latitude>49.188817</Latitude><Longitude>
         // 122.848500</Longitude><RecordedTime><02:40:48 pm</RecordedTime><RouteMap><Href>http://....</Href></RouteMap>
         // </Bus>
-
         vehicleNumber = Integer.parseInt(setValue("VehicleNo", initInput));
         tripId = Integer.parseInt(setValue("TripId", initInput));
-        routeNumber = Integer.parseInt(setValue("RouteNo", initInput));
+        // Route number can also include numbers, such as C28, N9, etc.
+        routeNumber = setValue("RouteNo", initInput);
         direction = setValue("Direction", initInput);
         destination = setValue("Destination", initInput);
         pattern = setValue("Pattern", initInput);
@@ -61,7 +61,7 @@ class Bus {
     public int getTripId() {
         return tripId;
     }
-    public int getRouteNumber() {
+    public String getRouteNumber() {
         return routeNumber;
     }
     public String getDirection() {
