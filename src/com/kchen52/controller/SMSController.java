@@ -18,19 +18,29 @@ import com.twilio.sdk.verbs.TwiMLResponse;
 public class SMSController {
 
     @RequestMapping(value="/sms", method=RequestMethod.GET)
-        public void processSMS(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void processSMS(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO: Validate input with regex
 
-            // TODO: Validate input with regex
+		// Assuming it's legitimate
+		SMSProcessor processor = SMSProcessor.getProcessor();
+		processor.handleRequest(request);
 
-            // Assuming it's legitimate
-            SMSProcessor processor = SMSProcessor.getProcessor();
-            processor.someFunction(request);
+		// Create an empty TwiML response for the twilio request
+		TwiMLResponse twiml = new TwiMLResponse();
+		response.setContentType("application/xml");
+		response.getWriter().print(twiml.toXML());
+	}
 
-            // Create an empty TwiML response for the twilio request
-            TwiMLResponse twiml = new TwiMLResponse();
-            response.setContentType("application/xml");
-            response.getWriter().print(twiml.toXML());
-            
-            //return new ModelAndView("test", "message", "this be the actual msg lol1");
-        }
+    @RequestMapping(value="/test", method=RequestMethod.GET)
+	public String showTestPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	return "test";
+	}
+
+    @RequestMapping(value="/test", method=RequestMethod.POST)
+	public String handleTestPagePost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	String msg = request.getParameter("msg");
+		SMSProcessor processor = SMSProcessor.getProcessor();
+		processor.sendSMS("+17786554235", msg);
+    	return "test";
+	}
 }

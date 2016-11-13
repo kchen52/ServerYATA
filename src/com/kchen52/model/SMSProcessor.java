@@ -64,7 +64,7 @@ public class SMSProcessor {
         }
     }
 
-    public void someFunction(HttpServletRequest request) {
+    public void handleRequest(HttpServletRequest request) {
         String requestPhoneNumber = request.getParameter("From");
         String bodyOfRequest = request.getParameter("Body");
 
@@ -121,7 +121,7 @@ public class SMSProcessor {
         return builder.toString();
     }
 
-    private void sendSMS(String recipient, String messageToSend) {
+    public void sendSMS(String recipient, String messageToSend) {
         // NOTE: There is a 1600 character limit imposed by Twilio, so split messages
         // accordingly.
         ArrayList<String> splitMessages = new ArrayList<>();

@@ -23,5 +23,6 @@
 	<servlet-mapping>
 		<servlet-name>YATAServlet</servlet-name>
 		<url-pattern>/sms</url-pattern>
+		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
 </web-app>
