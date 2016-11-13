@@ -38,7 +38,7 @@ public class SMSController {
 
     @RequestMapping(value="/test", method=RequestMethod.POST)
 	public String handleTestPagePost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    	String msg = request.getParameter("msg");
+    	String msg = request.getParameter("message");
 		SMSProcessor processor = SMSProcessor.getProcessor();
 		processor.sendSMS("+17786554235", msg);
     	return "test";
